@@ -6,6 +6,7 @@ import { MatCardModule, MatButtonModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { NewsComponent } from './news/news.component';
+import { NewsblocksService } from './newsblocks.service';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { NewsComponent } from './news/news.component';
     MatButtonModule,
     MatCardModule
   ],
-  providers: [],
+  providers: [NewsblocksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
