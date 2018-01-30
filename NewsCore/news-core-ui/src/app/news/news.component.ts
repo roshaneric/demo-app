@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsBlock } from '../newsblock';
+import { NewsblocksService }  from '../newsblocks.service';
 
 @Component({
   selector: 'app-news',
@@ -7,17 +8,11 @@ import { NewsBlock } from '../newsblock';
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit {
-  newsblocks: NewsBlock[] = [
-      {
-        id: 1,
-        title: 'title 1',
-        content: 'content 1'
-      }
-  ];
+  newsblocks: NewsBlock[];
 
-  constructor() { }
+  constructor(private newsblocksService : NewsblocksService) { }
 
   ngOnInit() {
+    this.newsblocks = this.newsblocksService.getNewsblocks();
   }
-
 }
