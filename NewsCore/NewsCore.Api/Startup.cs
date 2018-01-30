@@ -4,12 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NewsCore.Api.Interfaces;
 using NewsCore.Api.Services;
+using NewsCore.Data;
+using NewsCore.Domain.Models;
 
 namespace NewsCore.Api
 {
@@ -25,9 +28,16 @@ namespace NewsCore.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options => options.AddPolicy("AllowAll", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+            services.AddCors(options => options.AddPolicy("AllowAll", 
+                builder => builder
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()));
             services.AddMvc();
             services.AddTransient<INewsService, NewsService>();
+            services.AddTransient<Domain.Interfaces.INewsRepository, Data.NewsRepository>();
+            services.AddTransient<Domain.Interfaces.INewsService, Domain.Services.NewsService>();
+            services.AddDbContext<NewsContext>(options => options.UseInMemoryDatabase("news-db"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

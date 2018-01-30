@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using NewsCore.Api.Extensions;
 
 namespace NewsCore.Api
 {
@@ -14,7 +15,9 @@ namespace NewsCore.Api
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            BuildWebHost(args)
+                .SeedTestData()
+                .Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
