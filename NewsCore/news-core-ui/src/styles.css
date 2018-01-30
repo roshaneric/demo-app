@@ -1,10 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-body {
-    background: #eeeeee
+body { 
+  font-family: Roboto, Arial, sans-serif;
+  margin: 0;
+}
+
+.site-content {
+  padding: 2px 8px;
 }
 
 .card {
-  margin-top: 8px;
+  margin-top: 5px;
 }

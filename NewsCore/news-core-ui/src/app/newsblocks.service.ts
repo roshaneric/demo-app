@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import { environment } from '../environments/environment';
+import { Observable } from 'rxjs/Observable';
+
 import { NewsBlock } from './newsblock';
 
 @Injectable()
 export class NewsblocksService {
+  private newsApiUrl = environment.apiBaseUrl + 'news-blocks';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getNewsblocks(): NewsBlock[] {
-    return [
-      {
-        id: 1,
-        title: 'title 1',
-        content: 'content 1'
-      }
-    ];
+  getNewsblocks(): Observable<NewsBlock[]> {
+    return this.http.get<NewsBlock[]>(this.newsApiUrl);
   }
 }
