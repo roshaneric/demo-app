@@ -16,7 +16,7 @@ namespace NewsCore.Api
         public static void Main(string[] args)
         {
             BuildWebHost(args)
-                .SeedTestData()
+                .SeedData()
                 .Run();
         }
 

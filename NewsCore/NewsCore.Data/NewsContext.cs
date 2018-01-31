@@ -16,5 +16,16 @@ namespace NewsCore.Data
         {}
 
         public DbSet<NewsBlock> NewsBlocks { get; set; }
+        public DbSet<NewsContent> NewsContents { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<NewsContent>(entity =>
+            {
+                entity.HasOne(_ => _.NewsBlock)
+                    .WithMany(_ => _.NewsContents)
+                    .HasForeignKey(_ => _.NewsBlockID);
+            });
+        }
     }
 }

@@ -8,7 +8,7 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue.
 $news-app-primary: mat-palette($mat-teal);
-$news-app-accent : mat-palette($mat-cyan, A200, A100, A400);
+$news-app-accent : mat-palette($mat-cyan, 400, 100, 500);
 // The warn palette is optional (defaults to red).
 $news-app-warn : mat-palette($mat-deep-orange);
 // Create the theme object (a Sass map containing all of the palettes).

@@ -8,6 +8,6 @@ namespace NewsCore.Domain.Models
     {
         public int ID { get; set; }
         public string Title { get; set; }
-        public string Content { get; set; }
+        public IEnumerable<NewsContent> NewsContents { get; set; }
     }
 }

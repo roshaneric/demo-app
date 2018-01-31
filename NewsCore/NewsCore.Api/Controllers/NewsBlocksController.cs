@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewsCore.Api.Interfaces;
 using NewsCore.Api.Models;
+using NewsCore.Domain.Models;
 
 namespace NewsCore.Api.Controllers
 {
@@ -22,7 +23,7 @@ namespace NewsCore.Api.Controllers
 
         // GET: api/news-block
         [HttpGet]
-        public IEnumerable<NewsBlock> Get()
+        public IEnumerable<NewsBlockView> Get()
         {
             return _newsService.GetNewsBlocks();
         }

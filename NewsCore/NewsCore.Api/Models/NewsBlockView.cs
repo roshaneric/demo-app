@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace NewsCore.Api.Models
 {
-    public class NewsBlock
+    public class NewsBlockView
     {
-        public int ID { get; set; }
         public string Title { get; set; }
-        public string Content { get; set; }
+        public IEnumerable<string> Contents { get; set; }
     }
 }

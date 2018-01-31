@@ -5,6 +5,7 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 using NewsCore.Api.Interfaces;
 using NewsCore.Api.Models;
+using NewsCore.Domain.Models;
 
 namespace NewsCore.Api.Services
 {
@@ -17,12 +18,15 @@ namespace NewsCore.Api.Services
             _service = service;
         }
 
-        public IEnumerable<NewsBlock> GetNewsBlocks()
+        public IEnumerable<NewsBlockView> GetNewsBlocks()
         {
-            return _service.GetNewsBlocks().Select(_ => new NewsBlock()
+            var models =  _service.GetNewsBlocks().Select(_ => new NewsBlockView()
             {
-               ID = _.ID, Title = _.Title, Content = _.Content
+                Title = _.Title,
+                Contents = _.NewsContents.Select(c => c.Content)
             });
+
+            return models;
         }
     }
 }
