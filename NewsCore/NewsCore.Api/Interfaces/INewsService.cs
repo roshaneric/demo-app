@@ -9,6 +9,6 @@ namespace NewsCore.Api.Interfaces
 {
     public interface INewsService
     {
-        IEnumerable<NewsBlockView> GetNewsBlocks();
+        IEnumerable<NewsBlockDto> GetNewsBlocks();
     }
 }

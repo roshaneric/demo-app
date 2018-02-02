@@ -17,6 +17,6 @@ namespace NewsCore.Domain.Models
         public int NewsBlockID { get; set; }
         public NewsBlock NewsBlock { get; set; }
         public NewsContentType ContentType { get; set; }
-        public string Content { get; set; }
+        public string Detail { get; set; }
     }
 }

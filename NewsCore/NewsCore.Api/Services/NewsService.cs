@@ -18,12 +18,12 @@ namespace NewsCore.Api.Services
             _service = service;
         }
 
-        public IEnumerable<NewsBlockView> GetNewsBlocks()
+        public IEnumerable<NewsBlockDto> GetNewsBlocks()
         {
-            var models =  _service.GetNewsBlocks().Select(_ => new NewsBlockView()
+            var models =  _service.GetNewsBlocks().Select(_ => new NewsBlockDto()
             {
                 Title = _.Title,
-                Contents = _.NewsContents.Select(c => c.Content)
+                Contents = _.NewsContents.Select(c => c.Detail)
             });
 
             return models;

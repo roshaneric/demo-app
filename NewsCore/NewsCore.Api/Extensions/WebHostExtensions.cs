@@ -28,13 +28,13 @@ namespace NewsCore.Api.Extensions
                                 {
                                     ID = 1,
                                     ContentType = NewsContent.NewsContentType.Text,
-                                    Content = "Some Text Content 01."
+                                    Detail = "Some Text Content 01."
                                 },
                                 new NewsContent()
                                 {
                                     ID = 2,
                                     ContentType = NewsContent.NewsContentType.Text,
-                                    Content = "Some Text Content 02."
+                                    Detail = "Some Text Content 02."
                                 }
                             }
                         },
@@ -48,7 +48,7 @@ namespace NewsCore.Api.Extensions
                                 {
                                     ID = 3,
                                     ContentType = NewsContent.NewsContentType.Text,
-                                    Content = "Some Text Content 03."
+                                    Detail = "Some Text Content 03."
                                 }
                             }
                         }

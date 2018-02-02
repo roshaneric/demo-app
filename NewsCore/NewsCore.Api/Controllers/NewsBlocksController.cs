@@ -23,7 +23,7 @@ namespace NewsCore.Api.Controllers
 
         // GET: api/news-block
         [HttpGet]
-        public IEnumerable<NewsBlockView> Get()
+        public IEnumerable<NewsBlockDto> Get()
         {
             return _newsService.GetNewsBlocks();
         }
