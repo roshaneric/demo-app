@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -34,10 +35,14 @@ namespace NewsCore.Api
                     .AllowAnyHeader()
                     .AllowAnyMethod()));
             services.AddMvc();
-            services.AddTransient<INewsService, NewsService>();
-            services.AddTransient<Domain.Interfaces.INewsRepository, Data.NewsRepository>();
-            services.AddTransient<Domain.Interfaces.INewsService, Domain.Services.NewsService>();
+
+            // We do not use Autofac for DbContext
             services.AddDbContext<NewsContext>(options => options.UseInMemoryDatabase("news-db"));
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new AutofacModule());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
