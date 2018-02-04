@@ -8,5 +8,6 @@ namespace NewsCore.Domain.Interfaces
     public interface INewsRepository
     {
         IEnumerable<NewsBlock> GetNewsBlocks();
+        void Save(NewsBlock newsBlock);
     }
 }

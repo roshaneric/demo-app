@@ -6,6 +6,10 @@ import { Observable } from 'rxjs/Observable';
 
 import { NewsBlock } from './newsblock';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable()
 export class NewsblocksService {
   private newsApiUrl = environment.apiBaseUrl + 'news-blocks';
@@ -14,5 +18,9 @@ export class NewsblocksService {
 
   getNewsblocks(): Observable<NewsBlock[]> {
     return this.http.get<NewsBlock[]>(this.newsApiUrl);
+  }
+
+  addNewsblock(newsblock: NewsBlock): Observable<NewsBlock> {
+    return this.http.post<NewsBlock>(this.newsApiUrl, newsblock, httpOptions);
   }
 }

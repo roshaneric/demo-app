@@ -37,8 +37,9 @@ namespace NewsCore.Api.Controllers
 
         // POST: api/news-blocks
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]NewsBlockDto dto)
         {
+
         }
 
         // PUT: api/news-blocks/5

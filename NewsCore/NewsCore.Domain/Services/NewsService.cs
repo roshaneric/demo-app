@@ -14,9 +14,15 @@ namespace NewsCore.Domain.Services
         {
             _repository = repository;
         }
+
         public IEnumerable<NewsBlock> GetNewsBlocks()
         {
             return _repository.GetNewsBlocks();
+        }
+
+        public void Save(NewsBlock newsBlock)
+        {
+            _repository.Save(newsBlock);
         }
     }
 }

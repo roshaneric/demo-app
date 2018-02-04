@@ -22,5 +22,11 @@ namespace NewsCore.Data
             var blocks = _context.NewsBlocks.Include(b => b.NewsContents).ToArray();
             return blocks;
         }
+
+        public void Save(NewsBlock newsBlock)
+        {
+            _context.NewsBlocks.Add(newsBlock);
+            _context.SaveChanges();
+        }
     }
 }

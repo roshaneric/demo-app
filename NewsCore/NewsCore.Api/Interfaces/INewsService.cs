@@ -10,5 +10,6 @@ namespace NewsCore.Api.Interfaces
     public interface INewsService
     {
         IEnumerable<NewsBlockDto> GetNewsBlocks();
+        void Save(NewsBlockDto dto);
     }
 }
