@@ -39,7 +39,7 @@ namespace NewsCore.Api.Controllers
         [HttpPost]
         public void Post([FromBody]NewsBlockDto dto)
         {
-
+            _newsService.Save(dto);
         }
 
         // PUT: api/news-blocks/5

@@ -25,6 +25,15 @@ namespace NewsCore.Data
 
         public void Save(NewsBlock newsBlock)
         {
+            // TODO: Remove this after moving to SQL Server
+            var maxBlockId = _context.NewsBlocks.Max(_ => _.ID);
+            var maxContentId = _context.NewsContents.Max(_ => _.ID);
+            newsBlock.ID = maxBlockId + 1;
+            foreach (var content in newsBlock.NewsContents)
+            {
+                content.ID = maxContentId + 1;
+            }
+
             _context.NewsBlocks.Add(newsBlock);
             _context.SaveChanges();
         }

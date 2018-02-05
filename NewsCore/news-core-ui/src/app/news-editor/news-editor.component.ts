@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms'
+import { FormBuilder, Validators } from '@angular/forms';
 import { NewsBlock } from '../newsblock';
 import { NewsblocksService } from '../newsblocks.service';
 
@@ -10,9 +10,19 @@ import { NewsblocksService } from '../newsblocks.service';
 })
 export class NewsEditorComponent implements OnInit {
 
+  newsblock: NewsBlock;
+
   constructor(private newsblocksService: NewsblocksService) { }
 
   ngOnInit() {
+    this.newsblock = { id: 0, title: '', contents: [''] };
   }
 
+  save(): void {
+    this.newsblocksService.addNewsblock(this.newsblock);
+  }
+
+  trackByIndex(index: number, value: number) {
+    return index;
+  }
 }

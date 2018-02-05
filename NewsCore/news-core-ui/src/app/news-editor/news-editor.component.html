@@ -1,11 +1,12 @@
 <div class="example-container">
   <mat-form-field>
-    <input matInput placeholder="Title">
+    <input matInput placeholder="Title" [(ngModel)]="newsblock.title">
   </mat-form-field>
 
-  <mat-form-field>
-    <textarea matInput placeholder="Details"></textarea>
+  <mat-form-field *ngFor="let content of newsblock.contents; let i = index; trackBy: trackByIndex">
+    <textarea matInput placeholder="Details" [(ngModel)]="newsblock.contents[i]"></textarea>
   </mat-form-field>
-
-  <button mat-button>Save</button>
+</div>
+<div>
+  <button mat-button color="primary" (click)="save()">Save</button>
 </div>

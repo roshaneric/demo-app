@@ -20,7 +20,7 @@ export class NewsblocksService {
     return this.http.get<NewsBlock[]>(this.newsApiUrl);
   }
 
-  addNewsblock(newsblock: NewsBlock): Observable<NewsBlock> {
-    return this.http.post<NewsBlock>(this.newsApiUrl, newsblock, httpOptions);
+  addNewsblock(newsblock: NewsBlock): void {
+    this.http.post<NewsBlock>(this.newsApiUrl, newsblock, httpOptions).subscribe(res => console.log(res));
   }
 }
