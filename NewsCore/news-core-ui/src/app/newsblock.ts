@@ -1,5 +1,14 @@
 export class NewsBlock {
-    id: number;
-    title: string;
-    contents: string[];
+    id = 0;
+    title = '';
+    contents: NewsContent[];
+
+    constructor() {
+        this.contents = [];
+        this.contents.push(new NewsContent());
+    }
+}
+
+export class NewsContent {
+    detail = '';
 }

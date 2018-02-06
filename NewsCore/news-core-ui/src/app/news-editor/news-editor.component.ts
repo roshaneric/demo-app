@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { NewsBlock } from '../newsblock';
+import { NewsBlock, NewsContent } from '../newsblock';
 import { NewsblocksService } from '../newsblocks.service';
 
 @Component({
@@ -10,12 +10,11 @@ import { NewsblocksService } from '../newsblocks.service';
 })
 export class NewsEditorComponent implements OnInit {
 
-  newsblock: NewsBlock;
+  newsblock = new NewsBlock();
 
   constructor(private newsblocksService: NewsblocksService) { }
 
   ngOnInit() {
-    this.newsblock = { id: 0, title: '', contents: [''] };
   }
 
   save(): void {

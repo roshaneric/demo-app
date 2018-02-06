@@ -8,6 +8,11 @@ namespace NewsCore.Api.Models
     public class NewsBlockDto
     {
         public string Title { get; set; }
-        public IEnumerable<string> Contents { get; set; }
+        public IEnumerable<NewsContentDto> Contents { get; set; }
+    }
+
+    public class NewsContentDto
+    {
+        public string Detail { get; set; }
     }
 }

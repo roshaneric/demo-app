@@ -23,7 +23,7 @@ namespace NewsCore.Api.Services
             var models =  _service.GetNewsBlocks().Select(_ => new NewsBlockDto()
             {
                 Title = _.Title,
-                Contents = _.NewsContents.Select(c => c.Detail)
+                Contents = _.NewsContents.Select(c => new NewsContentDto() { Detail = c.Detail})
             });
 
             return models;
@@ -37,7 +37,7 @@ namespace NewsCore.Api.Services
                 NewsContents = dto.Contents.Select(c => new NewsContent()
                 {
                     ContentType = NewsContent.NewsContentType.Text,
-                    Detail = c
+                    Detail = c.Detail
                 }).ToArray()
             });
         }

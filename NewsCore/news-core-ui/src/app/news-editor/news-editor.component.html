@@ -4,7 +4,7 @@
   </mat-form-field>
 
   <mat-form-field *ngFor="let content of newsblock.contents; let i = index; trackBy: trackByIndex">
-    <textarea matInput placeholder="Details" [(ngModel)]="newsblock.contents[i]"></textarea>
+    <textarea matInput placeholder="Details" [(ngModel)]="newsblock.contents[i].detail"></textarea>
   </mat-form-field>
 </div>
 <div>
