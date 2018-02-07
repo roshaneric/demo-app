@@ -1,12 +1,17 @@
-<div class="example-container">
-  <mat-form-field>
-    <input matInput placeholder="Title" [(ngModel)]="newsblock.title">
-  </mat-form-field>
+<div class="example-container" >
+  <form [formGroup]="newsForm" (ngSubmit)="save()" novalidate>
+    <mat-form-field>
+      <input matInput placeholder="Title" formControlName="title">
+    </mat-form-field>
 
-  <mat-form-field *ngFor="let content of newsblock.contents; let i = index; trackBy: trackByIndex">
-    <textarea matInput placeholder="Details" [(ngModel)]="newsblock.contents[i].detail"></textarea>
-  </mat-form-field>
-</div>
-<div>
-  <button mat-button color="primary" (click)="save()">Save</button>
+    <div formArrayName="contents">
+      <mat-form-field *ngFor="let content of contents.controls; let i=index" [formGroupName]="i">
+        <textarea matInput placeholder="Details #{{i + 1}}" formControlName="detail"></textarea>
+      </mat-form-field>
+    </div>
+    <div>
+        <button mat-button color="primary" type="submit">Save</button>
+      </div>
+  </form>
+  
 </div>
