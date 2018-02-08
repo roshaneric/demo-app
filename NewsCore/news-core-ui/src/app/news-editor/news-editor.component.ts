@@ -18,7 +18,7 @@ export class NewsEditorComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
-    this.setContents([new NewsContent()]);
+    // this.setContents([new NewsContent()]);
   }
 
   setContents(contents: NewsContent[]) {
@@ -33,7 +33,7 @@ export class NewsEditorComponent implements OnInit {
 
   createForm() {
     this.newsForm = this.fb.group({
-      title: '',
+      title: ['', Validators.required],
       contents: this.fb.array([])
     });
     this.addContent();
