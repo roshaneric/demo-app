@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace NewsCore.Domain.Models
@@ -13,6 +14,7 @@ namespace NewsCore.Domain.Models
             Video = 2
         }
 
+        [Key]
         public int ID { get; set; }
         public int NewsBlockID { get; set; }
         public NewsBlock NewsBlock { get; set; }

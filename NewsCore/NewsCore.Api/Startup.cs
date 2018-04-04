@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using NewsCore.Api.Data;
 using NewsCore.Api.Interfaces;
 using NewsCore.Api.Services;
 using NewsCore.Data;
@@ -34,10 +35,14 @@ namespace NewsCore.Api
                     .AllowAnyOrigin()
                     .AllowAnyHeader()
                     .AllowAnyMethod()));
-            services.AddMvc();
-
+            
             // We do not use Autofac for DbContext
-            services.AddDbContext<NewsContext>(options => options.UseInMemoryDatabase("news-db"));
+            var connectionString = Configuration.GetConnectionString("DbConnection");
+            services
+                .AddEntityFrameworkNpgsql()
+                .AddDbContext<NewsContext>(options => options.UseNpgsql(connectionString));
+
+            services.AddMvc();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -55,6 +60,7 @@ namespace NewsCore.Api
 
             app.UseCors("AllowAll");
             app.UseMvc();
+            Seeder.SeedDatabase(app.ApplicationServices);
         }
     }
 }

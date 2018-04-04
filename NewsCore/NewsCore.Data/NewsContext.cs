@@ -8,9 +8,6 @@ namespace NewsCore.Data
 {
     public class NewsContext : DbContext
     {
-        public NewsContext()
-        {}
-
         public NewsContext(DbContextOptions<NewsContext> options)
          : base(options)
         {}
