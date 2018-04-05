@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsCore.Api", "NewsCore.Ap
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{2A230844-D58D-450A-AF89-AB39653A07CD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsCore.Data.Tests", "NewsCore.Data.Tests\NewsCore.Data.Tests.csproj", "{1D6478D1-E6CE-44C5-A216-E8A762CD9F03}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,16 +29,9 @@ Global
 		{1C69BEE5-9253-4C38-B3B5-231E9AEF9D32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C69BEE5-9253-4C38-B3B5-231E9AEF9D32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C69BEE5-9253-4C38-B3B5-231E9AEF9D32}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1D6478D1-E6CE-44C5-A216-E8A762CD9F03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D6478D1-E6CE-44C5-A216-E8A762CD9F03}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D6478D1-E6CE-44C5-A216-E8A762CD9F03}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D6478D1-E6CE-44C5-A216-E8A762CD9F03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{1D6478D1-E6CE-44C5-A216-E8A762CD9F03} = {2A230844-D58D-450A-AF89-AB39653A07CD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CB34A191-50EF-4796-BDAA-9A995BE84567}

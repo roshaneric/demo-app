@@ -14,11 +14,19 @@ namespace NewsCore.Domain.Models
             Video = 2
         }
 
-        [Key]
-        public int ID { get; set; }
-        public int NewsBlockID { get; set; }
-        public NewsBlock NewsBlock { get; set; }
-        public NewsContentType ContentType { get; set; }
-        public string Detail { get; set; }
+        protected NewsContent()
+        {
+        }
+
+        public NewsContent(string detail)
+        {
+            ContentType = NewsContentType.Text;
+            Detail = detail;
+        }
+
+        public int ID { get; protected set; }
+        public int NewsBlockID { get; protected set; }
+        public NewsContentType ContentType { get; protected set; }
+        public string Detail { get; protected set; }
     }
 }

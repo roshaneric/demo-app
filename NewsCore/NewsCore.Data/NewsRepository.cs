@@ -19,7 +19,7 @@ namespace NewsCore.Data
 
         public IEnumerable<NewsBlock> GetNewsBlocks()
         {
-            var blocks = _context.NewsBlocks.Include(b => b.NewsContents).ToArray();
+            var blocks = _context.NewsBlocks.Include(NewsBlock.PropertyAccessExpressions.NewsContents).ToArray();
             return blocks;
         }
 

@@ -10,7 +10,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using NewsCore.Api.Data;
 using NewsCore.Api.Interfaces;
 using NewsCore.Api.Services;
 using NewsCore.Data;
@@ -60,7 +59,9 @@ namespace NewsCore.Api
 
             app.UseCors("AllowAll");
             app.UseMvc();
-            Seeder.SeedDatabase(app.ApplicationServices);
+
+            // TODO: Seed the database
+            //Seeder.SeedDatabase(app.ApplicationServices);
         }
     }
 }

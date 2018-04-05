@@ -17,7 +17,8 @@ namespace NewsCore.Domain.Services
 
         public IEnumerable<NewsBlock> GetNewsBlocks()
         {
-            return _repository.GetNewsBlocks();
+            var newsBlocks = _repository.GetNewsBlocks();
+            return newsBlocks;
         }
 
         public void Save(NewsBlock newsBlock)

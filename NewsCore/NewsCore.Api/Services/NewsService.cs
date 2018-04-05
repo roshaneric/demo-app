@@ -31,15 +31,9 @@ namespace NewsCore.Api.Services
 
         public void Save(NewsBlockDto dto)
         {
-            _service.Save(new NewsBlock
-            {
-                Title = dto.Title,
-                NewsContents = dto.Contents.Select(c => new NewsContent()
-                {
-                    ContentType = NewsContent.NewsContentType.Text,
-                    Detail = c.Detail
-                }).ToArray()
-            });
+            var newsBlock = new NewsBlock(dto.Title);
+            newsBlock.AddNewsContents(dto.Contents.Select(_ => new NewsContent(_.Detail)).ToArray());
+            _service.Save(newsBlock);
         }
     }
 }
