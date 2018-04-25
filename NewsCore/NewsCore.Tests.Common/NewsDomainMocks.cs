@@ -22,7 +22,7 @@ namespace NewsCore.Tests.Common
             var newsContents = details.Select((detail, i) => CreateNewsContent(i + 1, detail)).ToList();
             
             var newsBlock = new NewsBlock(title);
-            newsBlock.Set("NewsContentList", newsContents);
+            newsBlock.Set(NewsBlock.PropertyAccessExpressions.NewsContents, newsContents);
 
             return newsBlock;
         }
@@ -30,7 +30,7 @@ namespace NewsCore.Tests.Common
         public static NewsBlock CreateNewsBlock(string title, List<NewsContent> newsContents = null)
         {
             var newsBlock  = new NewsBlock(title);
-            newsBlock.Set("NewsContentList", newsContents);
+            newsBlock.Set(NewsBlock.PropertyAccessExpressions.NewsContents, newsContents);
 
             return newsBlock;
         }

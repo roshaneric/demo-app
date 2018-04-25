@@ -15,61 +15,76 @@ namespace NewsCore.Data.Tests
         [TestMethod]
         public void GetNewsBlocks()
         {
-            //using (var context = Helpers.GetNewsContext())
-            //{
-            //    context.Add(new NewsBlock()
-            //    {
-            //        ID = 1,
-            //        Title = "x1",
-            //        NewsContents = new[]
-            //        {
-            //            new NewsContent() { ContentType = NewsContent.NewsContentType.Text, ID =  1, Detail = "x1"}
-            //        }
-            //    });
-            //    context.SaveChanges();
-            //    var repo = new NewsRepository(context);
+            var testBuilder = new TestBuilder();
+            var testData = testBuilder.CreateNewsBlocks();
 
-            //    var newsBlocks = repo.GetNewsBlocks();
-            //    newsBlocks.Should().HaveCount(1);
-            //}
+            var repo = testBuilder.SetupMockData(testData).Build();
+            var newsBlocks = repo.GetNewsBlocks();
+            newsBlocks.Should().BeEquivalentTo(testData);
         }
 
         [TestMethod]
         public void SaveNewsBlocks()
         {
-            var newsBlock = CreateNewsBlock();
-            var mockContext = CreateMockContext();
-            var repo = new NewsRepository(mockContext.Object);
+            var testBuilder = new TestBuilder();
+            var repo = testBuilder.SetupMockData(new List<NewsBlock>()).Build();
 
+            var newsBlock = testBuilder.CreateNewsBlock();
             repo.Save(newsBlock);
 
-            mockContext.Object.NewsBlocks.Should().HaveCount(1);
+            testBuilder.MockSet.Verify(_ => _.Add(newsBlock), Times.Once());
+            testBuilder.MockContext.Verify(_ => _.SaveChanges(), Times.Once);
         }
 
-        private NewsBlock CreateNewsBlock()
+        private class TestBuilder
         {
-            var newsBlock = NewsDomainMocks.CreateNewsBlock("Title 01", "Detail01", "Detail02");
+            public Mock<NewsContext> MockContext { get; }
+            public Mock<DbSet<NewsBlock>> MockSet { get; }
 
-            return newsBlock;
-        }
-
-        private Mock<NewsContext> CreateMockContext()
-        {
-            var data = new List<NewsBlock>()
+            public TestBuilder()
             {
-                CreateNewsBlock()
-            }.AsQueryable();
+                MockSet = new Mock<DbSet<NewsBlock>>();
+                MockContext = new Mock<NewsContext>();
+            }
 
-            var mockSet = new Mock<DbSet<NewsBlock>>();
-            mockSet.As<IQueryable<NewsBlock>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<NewsBlock>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<NewsBlock>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<NewsBlock>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            public List<NewsBlock> CreateNewsBlocks()
+            {
+                return new List<NewsBlock>()
+                {
+                    CreateNewsBlock()
+                };
+            }
+            
+            public NewsBlock CreateNewsBlock()
+            {
+                var newsBlock = NewsDomainMocks.CreateNewsBlock("Title 01", "Detail01", "Detail02");
 
-            var mockContext = new Mock<NewsContext>();
-            mockContext.Setup(_ => _.NewsBlocks).Returns(mockSet.Object);
+                return newsBlock;
+            }
 
-            return mockContext;
+            public TestBuilder SetupMockData(List<NewsBlock> data)
+            {
+                data = data ?? new List<NewsBlock>()
+                {
+                    CreateNewsBlock()
+                };
+
+                var queryableData = data.AsQueryable();
+
+                MockSet.As<IQueryable<NewsBlock>>().Setup(m => m.Provider).Returns(queryableData.Provider);
+                MockSet.As<IQueryable<NewsBlock>>().Setup(m => m.Expression).Returns(queryableData.Expression);
+                MockSet.As<IQueryable<NewsBlock>>().Setup(m => m.ElementType).Returns(queryableData.ElementType);
+                MockSet.As<IQueryable<NewsBlock>>().Setup(m => m.GetEnumerator()).Returns(queryableData.GetEnumerator());
+
+                MockContext.Setup(_ => _.NewsBlocks).Returns(MockSet.Object);
+
+                return this;
+            }
+
+            public NewsRepository Build()
+            {
+                return new NewsRepository(MockContext.Object);
+            }
         }
     }
 }
