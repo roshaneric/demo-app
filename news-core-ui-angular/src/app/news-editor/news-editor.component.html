@@ -1,0 +1,15 @@
+<mat-card>
+  <form [formGroup]="newsForm" (ngSubmit)="save()" novalidate  class="flex-container">
+    <mat-form-field>
+      <input matInput placeholder="Title" formControlName="title">
+    </mat-form-field>
+    <div formArrayName="contents">
+      <mat-form-field *ngFor="let content of contents.controls; let i=index" [formGroupName]="i" class="full-width">
+        <textarea matInput placeholder="Details #{{i + 1}}" formControlName="detail"></textarea>
+      </mat-form-field>
+    </div>
+    <div>
+        <button mat-button color="primary" type="submit" [disabled]="!newsForm.valid">Save</button>
+      </div>
+  </form>
+</mat-card>
